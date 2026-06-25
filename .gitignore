@@ -5,4 +5,4 @@ sales_reports
 venv 
 scratch 
 .agents 
-
+*.egg-info/

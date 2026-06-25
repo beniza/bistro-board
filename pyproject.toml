@@ -10,5 +10,14 @@ dependencies = [
     "fastapi>=0.100.0",
     "uvicorn>=0.22.0",
     "google-auth>=2.0.0",
-    "requests>=2.20.0"
+    "requests>=2.20.0",
+    "python-dotenv>=1.0.0"
 ]
+
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["dashboard"]
+
