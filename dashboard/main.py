@@ -22,7 +22,13 @@ def get_db_connection():
     if not os.path.exists(DB_ABS_PATH):
         raise HTTPException(status_code=500, detail="Database file not found. Run importer first.")
     conn = sqlite3.connect(DB_ABS_PATH, timeout=30.0)
-    conn.execute("PRAGMA journal_mode=WAL")
+    try:
+        conn.execute("PRAGMA journal_mode=WAL")
+    except sqlite3.OperationalError:
+        # Read-only deployment filesystem (e.g. Vercel serverless) can't create the -wal/-shm
+        # files WAL mode needs. The default journal mode works fine for the read-only queries
+        # every endpoint here runs, so just fall back instead of failing the whole request.
+        pass
     conn.row_factory = sqlite3.Row
     return conn
 

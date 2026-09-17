@@ -6,3 +6,5 @@ venv
 scratch 
 .agents 
 *.db
+!philos_demo.db
+.local/
