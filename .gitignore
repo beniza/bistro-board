@@ -1,0 +1,8 @@
+google_credentials.json 
+.env 
+__pycache__ 
+sales_reports 
+venv 
+scratch 
+.agents 
+*.db

@@ -1,0 +1,14 @@
+[project]
+name = "philos-dashboard"
+version = "0.1.0"
+description = "Business dashboard for Philos integrating Counter, Swiggy, and Zomato sales reports"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.0.0",
+    "openpyxl>=3.1.0",
+    "fastapi>=0.100.0",
+    "uvicorn>=0.22.0",
+    "google-auth>=2.0.0",
+    "requests>=2.20.0"
+]

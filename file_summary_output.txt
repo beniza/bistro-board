@@ -1,0 +1,38 @@
+COUNTER FILES:
+File: Philos-KKND-01.xlsx, Rows: 2211, Dates: N/A to N/A, Error: Order No. not in columns ['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4']
+File: Philos-KKND-02.xlsx, Rows: 368, Dates: N/A to N/A, Error: Order No. not in columns ['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4']
+File: Philos-KKND-03.xlsx, Rows: 459, Dates: N/A to N/A, Error: Order No. not in columns ['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4']
+File: Philos-KKND-04.xlsx, Rows: 439, Dates: N/A to N/A, Error: Order No. not in columns ['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4']
+File: Philos-KKND-05.xlsx, Rows: 497, Dates: N/A to N/A, Error: Order No. not in columns ['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4']
+
+ZOMATO FILES:
+File: Philos-KKND-Zomato-01.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Philos-KKND-Zomato-02.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Philos-KKND-Zomato-03.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Philos-KKND-Zomato-04.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Philos-KKND-Zomato-05.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+
+SWIGGY FILES:
+File: Annexure_1076417_02042026_1775125500235.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_04022026_1770197577715.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_04032026_1772617452417.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_04042026_1775255105807.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_04052026_1777891258007.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_04062026_1780584836139.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_07012026_1767792144955.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_08042026_1775655387563.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_11022026_1770811714048.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_11032026_1773228609368.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_13052026_1778672552085.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_14012026_1768391483614.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_15042026_1776253161390.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_18022026_1771428043850.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_18032026_1773834748011.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_20052026_1779287912558.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_21012026_1768994583546.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_22042026_1776875240360.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_25022026_1772023400297.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_25032026_1774433821266.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_27052026_1779881272408.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_28012026_1769598864330.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'
+File: Annexure_1076417_29042026_1777472133401.xlsx, Rows: None, Dates: None to None, Error: 'Order ID'

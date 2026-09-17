@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philos Business Dashboard</title>
+    <meta name="description" content="Premium sales analytics and channel performance dashboard for Philos.">
+    <!-- Google Font: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- ApexCharts CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body class="theme-light">
+    <!-- Mobile Sticky Top Bar -->
+    <div class="mobile-top-bar">
+        <button id="hamburger-menu-btn" class="mobile-menu-btn" aria-label="Toggle Navigation Menu">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        <div class="mobile-logo">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-blue);">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span>Philos</span>
+        </div>
+        <div class="mobile-theme-trigger">
+            <!-- Theme Toggle displayed on Mobile Header -->
+            <button id="mobile-theme-btn" class="mobile-theme-btn" aria-label="Toggle Theme">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="app-sidebar">
+            <div class="sidebar-header-wrapper">
+                <div class="sidebar-header">
+                    <div class="logo">
+                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="logo-icon-svg">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span>Philos</span>
+                    </div>
+                    <div class="tagline">Delicacy & Analytics</div>
+                </div>
+                <!-- Close menu button for Mobile -->
+                <button id="close-sidebar-btn" class="mobile-close-sidebar" aria-label="Close Navigation Menu">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Theme Switcher Controls -->
+            <div class="theme-switcher-container">
+                <span class="switcher-title">Theme System</span>
+                <div class="theme-switcher">
+                    <button class="theme-btn active" data-theme="light" title="Light Clean">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </button>
+                    <button class="theme-btn" data-theme="dark" title="Dark Minimal">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    <button class="theme-btn" data-theme="color" title="Vibrant Glow">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 14.7255 3.09032 17.1962 4.85857 19C5.3 19.45 5.3 20 4.9 20.4C4.5 20.8 4 20.9 3.5 20.5C1.6 18.5 0.5 15.5 0.5 12C0.5 5.6 5.6 0.5 12 0.5C18.4 0.5 23.5 5.6 23.5 12C23.5 18.4 18.4 23.5 12 23.5C11.1 23.5 10.2 23.4 9.4 23.1C8.8 22.9 8.6 22.1 9.1 21.7C9.5 21.3 10.1 21.4 10.6 21.6C11.1 21.8 11.5 22 12 22Z" fill="currentColor"></path>
+                            <circle cx="7.5" cy="10.5" r="1.5" fill="currentColor"></circle>
+                            <circle cx="11.5" cy="7.5" r="1.5" fill="currentColor"></circle>
+                            <circle cx="16.5" cy="9.5" r="1.5" fill="currentColor"></circle>
+                            <circle cx="15.5" cy="14.5" r="1.5" fill="currentColor"></circle>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-tab="overview" id="nav-overview">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="9" rx="1" />
+                        <rect x="14" y="3" width="7" height="5" rx="1" />
+                        <rect x="14" y="12" width="7" height="9" rx="1" />
+                        <rect x="3" y="16" width="7" height="5" rx="1" />
+                    </svg>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="economics" id="nav-economics">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                    <span>Platform Economics</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="counter" id="nav-counter">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    <span>Counter Insights</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="orders" id="nav-orders">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    <span>Order Journal</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="ledger" id="nav-ledger">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                    <span>Business Ledger</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="reconciliation" id="nav-reconciliation">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                        <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                        <line x1="9" y1="12" x2="10" y2="12"></line>
+                        <line x1="14" y1="12" x2="15" y2="12"></line>
+                        <line x1="9" y1="16" x2="10" y2="16"></line>
+                        <line x1="14" y1="16" x2="15" y2="16"></line>
+                    </svg>
+                    <span>Reconciliation</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="payouts" id="nav-payouts">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                        <line x1="8" y1="15" x2="10" y2="15"></line>
+                        <line x1="13" y1="15" x2="17" y2="15"></line>
+                    </svg>
+                    <span>Payout Analytics</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="promo" id="nav-promo">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                        <circle cx="8" cy="21" r="1"></circle>
+                        <circle cx="19" cy="21" r="1"></circle>
+                    </svg>
+                    <span>Promo Impact</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="period-badge">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span>Jan - May 2026</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header bar -->
+            <header class="content-header">
+                <div class="header-title">
+                    <h1 id="page-title">Executive Overview</h1>
+                    <p id="page-subtitle" class="subtitle">Multi-channel restaurant performance summary</p>
+                </div>
+                <div class="header-actions" style="display: flex; align-items: center; gap: 0.75rem;">
+                    <div class="date-range-selector">
+                        <label for="start-date" class="range-label">From:</label>
+                        <input type="date" id="start-date" class="date-input" value="2026-08-01" min="2025-01-01" max="2026-12-31">
+                        <label for="end-date" class="range-label">To:</label>
+                        <input type="date" id="end-date" class="date-input" value="2026-09-05" min="2025-01-01" max="2026-12-31">
+                    </div>
+                    <button id="btn-sync-data" class="btn btn-secondary" title="Sync report files from directories and recalculate KPIs" style="display: flex; align-items: center; gap: 6px; padding: 0.55rem 1rem; border-radius: 10px; border: 1px solid var(--border-card);">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="sync-icon"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                        <span>Sync Data</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- TAB 1: OVERVIEW -->
+            <section id="tab-overview" class="tab-pane active">
+                <!-- KPI Grid -->
+                <div class="kpi-grid">
+                    <div class="kpi-card" id="kpi-sales">
+                        <div class="kpi-info">
+                            <span class="kpi-label">Gross Revenue</span>
+                            <h2 class="kpi-value" id="kpi-total-sales">₹0.00</h2>
+                            <span class="kpi-trend positive">
+                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 2px;">
+                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    <polyline points="17 6 23 6 23 12"></polyline>
+                                </svg>
+                                All Channels
+                            </span>
+                        </div>
+                        <div class="kpi-icon-wrapper sales-gradient">
+                            <!-- Rupee symbol rendered as an iconified SVG image tag structure -->
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 3h12M6 8h12M6 13h7.5a4.5 4.5 0 0 0 0-9H6m0 9v9m6-9l6 9"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi-card" id="kpi-payout">
+                        <div class="kpi-info">
+                            <span class="kpi-label">Net Payout (Bank Credit)</span>
+                            <h2 class="kpi-value" id="kpi-total-payout">₹0.00</h2>
+                            <span class="kpi-trend info" id="kpi-margin-percent">
+                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 2px;">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                0% Margin Ratio
+                            </span>
+                        </div>
+                        <div class="kpi-icon-wrapper payout-gradient">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="2" y1="10" x2="22" y2="10"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi-card" id="kpi-orders">
+                        <div class="kpi-info">
+                            <span class="kpi-label">Total Volume</span>
+                            <h2 class="kpi-value" id="kpi-total-orders">0</h2>
+                            <span class="kpi-trend" id="kpi-delivered-ratio">0% Delivery Success</span>
+                        </div>
+                        <div class="kpi-icon-wrapper orders-gradient">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card" id="kpi-aov">
+                        <div class="kpi-info">
+                            <span class="kpi-label">Average Ticket Size (AOV)</span>
+                            <h2 class="kpi-value" id="kpi-overall-aov">₹0.00</h2>
+                            <span class="kpi-trend neutral">Per Transaction Avg</span>
+                        </div>
+                        <div class="kpi-icon-wrapper aov-gradient">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                                <line x1="9" y1="9" x2="15" y2="15"></line>
+                                <line x1="15" y1="9" x2="9" y2="15"></line>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Primary Chart Row -->
+                <div class="chart-row">
+                    <!-- Sales Trend Area Chart -->
+                    <div class="chart-card large">
+                        <div class="card-header">
+                            <h3 id="sales-trend-title">Revenue Trends</h3>
+                            <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                <div class="trend-toggle">
+                                    <button class="btn-toggle active" data-metric="sales" id="toggle-metric-revenue">Revenue</button>
+                                    <button class="btn-toggle" data-metric="payout" id="toggle-metric-payout">Payout</button>
+                                </div>
+                                <div class="trend-toggle">
+                                    <button class="btn-toggle active" data-groupby="month" id="toggle-month">Monthly</button>
+                                    <button class="btn-toggle" data-groupby="day" id="toggle-day">Daily</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <div id="chart-sales-trend"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Channel Share Doughnut Chart -->
+                    <div class="chart-card small">
+                        <div class="card-header">
+                            <h3>Channel Mix</h3>
+                        </div>
+                        <div class="chart-container">
+                            <div id="chart-channel-share"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Channel Breakdowns Cards -->
+                <div class="channels-grid">
+                    <!-- Counter -->
+                    <div class="channel-metric-card counter-border">
+                        <div class="channel-card-header">
+                            <div class="channel-badge counter-bg">Counter Sale</div>
+                            <svg class="channel-logo-svg text-counter" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                        </div>
+                        <div class="channel-card-body">
+                            <div class="metric-row">
+                                <span>Gross Sales</span>
+                                <strong id="counter-sales">₹0.00</strong>
+                            </div>
+                            <div class="metric-row">
+                                <span>Order Count</span>
+                                <strong id="counter-orders">0</strong>
+                            </div>
+                            <div class="metric-row">
+                                <span>Ticket AOV</span>
+                                <strong id="counter-aov">₹0.00</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Swiggy -->
+                    <div class="channel-metric-card swiggy-border">
+                        <div class="channel-card-header">
+                            <div class="channel-badge swiggy-bg">Swiggy</div>
+                            <svg class="channel-logo-svg text-swiggy" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                            </svg>
+                        </div>
+                        <div class="channel-card-body">
+                            <div class="metric-row">
+                                <span>Gross Sales</span>
+                                <strong id="swiggy-sales">₹0.00</strong>
+                            </div>
+                            <div class="metric-row">
+                                <span>Order Count</span>
+                                <strong id="swiggy-orders">0</strong>
+                            </div>
+                            <div class="metric-row">
+                                <span>Ticket AOV</span>
+                                <strong id="swiggy-aov">₹0.00</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Zomato -->
+                    <div class="channel-metric-card zomato-border">
+                        <div class="channel-card-header">
+                            <div class="channel-badge zomato-bg">Zomato</div>
+                            <svg class="channel-logo-svg text-zomato" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <div class="channel-card-body">
+                            <div class="metric-row">
+                                <span>Gross Sales</span>
+                                <strong id="zomato-sales">₹0.00</strong>
+                            </div>
+                            <div class="metric-row">
+                                <span>Order Count</span>
+                                <strong id="zomato-orders">0</strong>
+                            </div>
+                            <div class="metric-row">
+                                <span>Ticket AOV</span>
+                                <strong id="zomato-aov">₹0.00</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Chart Row 2: P&L Trend & Cost Allocation -->
+                <div class="chart-row" style="margin-top: 1.25rem;">
+                    <!-- Monthly P&L Trend -->
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="header-text-group">
+                                <h3>Monthly Profit & Loss Trend</h3>
+                                <p class="section-desc" style="font-size: 0.725rem; color: var(--text-muted); margin: 0.2rem 0 0 0;">Revenues, Expenses, and Operating Margins (April 2025 - June 2026)</p>
+                            </div>
+                        </div>
+                        <div class="chart-container" style="min-height: 320px;">
+                            <div id="chart-overview-pandl"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Operating Expense Sourcing Breakdown -->
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="header-text-group">
+                                <h3>Operating Expense Sourcing</h3>
+                                <p class="section-desc" style="font-size: 0.725rem; color: var(--text-muted); margin: 0.2rem 0 0 0;">Raw material, labor, and utility cost share</p>
+                            </div>
+                        </div>
+                        <div class="chart-container" style="min-height: 320px;">
+                            <div id="chart-overview-opex"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Chart Row 3: Hourly Sales Profile & Weekday Sales -->
+                <div class="chart-row">
+                    <!-- Hourly Order Velocity (Kitchen Load) -->
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="header-text-group">
+                                <h3>Hourly Order Velocity (Kitchen Load Tracker)</h3>
+                                <p class="section-desc" style="font-size: 0.725rem; color: var(--text-muted); margin: 0.2rem 0 0 0;">Hourly sales distribution (11:00 to 01:00) by channel</p>
+                            </div>
+                        </div>
+                        <div class="chart-container" style="min-height: 320px;">
+                            <div id="chart-overview-hourly"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Weekday Sales (Mon-Sat) -->
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="header-text-group">
+                                <h3>Weekday Performance (Mon - Sat)</h3>
+                                <p class="section-desc" style="font-size: 0.725rem; color: var(--text-muted); margin: 0.2rem 0 0 0;">Average and total sales by active weekday (Sunday closed)</p>
+                            </div>
+                        </div>
+                        <div class="chart-container" style="min-height: 320px;">
+                            <div id="chart-overview-weekday"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Chart Row 4: Multi-Channel Share Mix -->
+                <div class="chart-row" style="grid-template-columns: 1fr;">
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="header-text-group">
+                                <h3>Monthly Channel Revenue Contribution</h3>
+                                <p class="section-desc" style="font-size: 0.725rem; color: var(--text-muted); margin: 0.2rem 0 0 0;">100% Stacked contribution mix (Counter vs Swiggy vs Zomato)</p>
+                            </div>
+                        </div>
+                        <div class="chart-container" style="min-height: 320px;">
+                            <div id="chart-overview-share-mix"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: PLATFORM ECONOMICS -->
+            <section id="tab-economics" class="tab-pane">
+                <div class="economics-summary-grid">
+                    <div class="economics-card">
+                        <h3>Deduction Funnel</h3>
+                        <p class="section-desc">Comparing Gross Sales vs Commissions vs Net Payouts for Aggregators.</p>
+                        <div id="chart-eco-comparison"></div>
+                    </div>
+                    
+                    <div class="economics-card">
+                        <h3>Aggregator Margin Leakage</h3>
+                        <p class="section-desc">Analysis of Commission Rates & fees deducted by delivery platforms.</p>
+                        <div class="table-container">
+                            <table class="dashboard-table">
+                                <thead>
+                                    <tr>
+                                        <th>Channel</th>
+                                        <th>Gross Revenue</th>
+                                        <th>Platform Commissions</th>
+                                        <th>Other Fees/Taxes</th>
+                                        <th>Total Deductions</th>
+                                        <th>Net Bank Payout</th>
+                                        <th>Payout Ratio %</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="economics-table-body">
+                                    <!-- Dynamic rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="infobox-row">
+                    <div class="info-alert info">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-blue); flex-shrink: 0; margin-top: 0.15rem;">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                        <div>
+                            <strong>Platform Payout Ratios:</strong>
+                            <p>This table details how much of every rupee spent by the customer is actually credited to the restaurant's bank account. Direct Counter Sales retain 100% of revenue, while online delivery platforms (Swiggy & Zomato) deduct commissions, gateway charges, GST, TCS, and TDS.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: COUNTER INSIGHTS -->
+            <section id="tab-counter" class="tab-pane">
+                <div class="counter-grid">
+                    <!-- Top Menu Items -->
+                    <div class="counter-card-item">
+                        <div class="card-header">
+                            <h3>Popular Menu Items</h3>
+                            <span class="badge">Counter Orders</span>
+                        </div>
+                        <p class="section-desc">Frequency analysis of items ordered directly at the counter. Click on a bar to view detailed item breakdown.</p>
+                        <div id="chart-counter-items"></div>
+                    </div>
+                    
+                    <!-- Payment Methods -->
+                    <div class="counter-card-item">
+                        <div class="card-header">
+                            <h3>Counter Payment Mix</h3>
+                            <span class="badge">UPI / Cash / Card</span>
+                        </div>
+                        <p class="section-desc">Breakdown of gross collection across different counter payment modes.</p>
+                        <div class="chart-and-legend">
+                            <div id="chart-counter-payments"></div>
+                            <div class="payment-table-wrapper">
+                                <table class="dashboard-table mini-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Method</th>
+                                            <th>Total (INR)</th>
+                                            <th>Orders</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="payment-table-body">
+                                        <!-- Dynamic payment methods rows -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: ORDER JOURNAL -->
+            <section id="tab-orders" class="tab-pane">
+                <div class="filter-panel">
+                    <div class="search-box">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="search-icon-svg">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="order-search" placeholder="Search by Order ID, items, customer...">
+                    </div>
+                    <div class="select-box">
+                        <label for="filter-channel">Channel:</label>
+                        <select id="filter-channel">
+                            <option value="">All Channels</option>
+                            <option value="Counter">Counter</option>
+                            <option value="Swiggy">Swiggy</option>
+                            <option value="Zomato">Zomato</option>
+                        </select>
+                    </div>
+                    <div class="select-box">
+                        <label for="filter-status">Status:</label>
+                        <select id="filter-status">
+                            <option value="">All Statuses</option>
+                            <option value="delivered">Delivered / Printed</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="filter-btn-group">
+                        <button class="btn btn-primary" id="btn-apply-filters">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                            </svg> 
+                            Apply
+                        </button>
+                        <button class="btn btn-secondary" id="btn-reset-filters">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2.5 2v6h6M21.5 22v-6h-6"></path>
+                                <path d="M22 11.5A10 10 0 0 0 3.2 7.2L2.5 8M2 12.5a10 10 0 0 0 18.8 4.3l.7-.8"></path>
+                            </svg>
+                            Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Orders Data Table -->
+                <div class="table-card">
+                    <div class="table-container large-table">
+                        <table class="dashboard-table journal-table">
+                            <thead>
+                                <tr>
+                                    <th>Channel</th>
+                                    <th>Order ID</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Items Summary</th>
+                                    <th>Gross Sales</th>
+                                    <th>Discounts</th>
+                                    <th>GST Tax</th>
+                                    <th>Grand Total</th>
+                                    <th>Net Payout</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-table-body">
+                                <!-- Dynamic order rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Table Pagination -->
+                    <div class="table-pagination">
+                        <span class="pagination-info" id="pagination-info">Showing 0 to 0 of 0 entries</span>
+                        <div class="pagination-buttons">
+                            <button class="btn btn-pagination" id="btn-prev-page" disabled>
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="15 18 9 12 15 6"></polyline>
+                                </svg>
+                                Prev
+                            </button>
+                            <span class="page-number" id="current-page-num">Page 1</span>
+                            <button class="btn btn-pagination" id="btn-next-page" disabled>
+                                Next 
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 5: BUSINESS LEDGER -->
+            <section id="tab-ledger" class="tab-pane">
+                <!-- KPI Grid -->
+                <div class="kpi-grid">
+                    <div class="kpi-card" id="kpi-ledger-income">
+                        <div class="kpi-info">
+                            <span class="kpi-label">Total Income</span>
+                            <h2 class="kpi-value" id="kpi-ledger-total-income">₹0.00</h2>
+                            <span class="kpi-trend positive">Ledger Receipts</span>
+                        </div>
+                        <div class="kpi-icon-wrapper payout-gradient">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi-card" id="kpi-ledger-expenses">
+                        <div class="kpi-info">
+                            <span class="kpi-label">Total Expenses</span>
+                            <h2 class="kpi-value" id="kpi-ledger-total-expenses">₹0.00</h2>
+                            <span class="kpi-trend negative" id="kpi-ledger-expenses-desc">Operation Costs</span>
+                        </div>
+                        <div class="kpi-icon-wrapper aov-gradient" style="background: rgba(220, 38, 38, 0.1); color: var(--danger-color); border: 1px solid rgba(220, 38, 38, 0.15);">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi-card" id="kpi-ledger-profit">
+                        <div class="kpi-info">
+                            <span class="kpi-label">Net Profit (P&L)</span>
+                            <h2 class="kpi-value" id="kpi-ledger-net-profit">₹0.00</h2>
+                            <span class="kpi-trend" id="kpi-ledger-profit-trend">Surplus / Deficit</span>
+                        </div>
+                        <div class="kpi-icon-wrapper sales-gradient">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                <polyline points="17 6 23 6 23 12"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card" id="kpi-ledger-margin">
+                        <div class="kpi-info">
+                            <span class="kpi-label">Profit Margin Ratio</span>
+                            <h2 class="kpi-value" id="kpi-ledger-margin-ratio">0.0%</h2>
+                            <span class="kpi-trend neutral">Net margin return</span>
+                        </div>
+                        <div class="kpi-icon-wrapper orders-gradient">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M8 12h8"></path>
+                                <path d="M12 8v8"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ledger Charts Row -->
+                <div class="chart-row">
+                    <div class="chart-card large">
+                        <div class="card-header">
+                            <h3>Ledger Profitability Trend</h3>
+                            <span class="badge">Monthly ledger summary</span>
+                        </div>
+                        <div class="chart-container">
+                            <div id="chart-ledger-pandl"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card small">
+                        <div class="card-header">
+                            <h3>Expenses by Category</h3>
+                        </div>
+                        <div class="chart-container">
+                            <div id="chart-ledger-expenses-breakup"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ledger Income Breakup Row -->
+                <div class="chart-row" style="grid-template-columns: 1.2fr 2fr;">
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <h3>Income Channels</h3>
+                        </div>
+                        <div class="chart-container" style="min-height: 250px;">
+                            <div id="chart-ledger-income-breakup"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <h3>Top Expense Categories</h3>
+                        </div>
+                        <div class="table-container" style="max-height: 250px; overflow-y: auto;">
+                            <table class="dashboard-table mini-table">
+                                <thead>
+                                    <tr>
+                                        <th>Category</th>
+                                        <th>Amount (INR)</th>
+                                        <th>Transactions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ledger-expenses-categories-tbody">
+                                    <!-- Dynamic rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transaction Journal Section -->
+                <div class="card-header" style="margin-top: 2rem;">
+                    <h3>Ledger Transactions Journal</h3>
+                </div>
+
+                <div class="filter-panel">
+                    <div class="search-box">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="search-icon-svg">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="ledger-search" placeholder="Search by description or category...">
+                    </div>
+                    <div class="select-box">
+                        <label for="filter-ledger-type">Journal Type:</label>
+                        <select id="filter-ledger-type">
+                            <option value="expense">Expense Journal</option>
+                            <option value="income">Income Journal</option>
+                        </select>
+                    </div>
+                    <div class="filter-btn-group">
+                        <button class="btn btn-primary" id="btn-ledger-apply-filters">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                            </svg> 
+                            Apply
+                        </button>
+                        <button class="btn btn-secondary" id="btn-ledger-reset-filters">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2.5 2v6h6M21.5 22v-6h-6"></path>
+                                <path d="M22 11.5A10 10 0 0 0 3.2 7.2L2.5 8M2 12.5a10 10 0 0 0 18.8 4.3l.7-.8"></path>
+                            </svg>
+                            Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Ledger Table Card -->
+                <div class="table-card">
+                    <div class="table-container large-table">
+                        <table class="dashboard-table journal-table" id="ledger-journal-table">
+                            <thead id="ledger-journal-thead">
+                                <!-- Dynamic headers depending on active type -->
+                            </thead>
+                            <tbody id="ledger-journal-tbody">
+                                <!-- Dynamic transactions -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Table Pagination -->
+                    <div class="table-pagination">
+                        <span class="pagination-info" id="ledger-pagination-info">Showing 0 to 0 of 0 entries</span>
+                        <div class="pagination-buttons">
+                            <button class="btn btn-pagination" id="btn-ledger-prev-page" disabled>
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="15 18 9 12 15 6"></polyline>
+                                </svg>
+                                Prev
+                            </button>
+                            <span class="page-number" id="ledger-current-page-num">Page 1</span>
+                            <button class="btn btn-pagination" id="btn-ledger-next-page" disabled>
+                                Next 
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 6: DATA RECONCILIATION -->
+            <section id="tab-reconciliation" class="tab-pane">
+                <!-- KPI Variance Summary Grid -->
+                <div class="kpi-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 1.5rem;">
+                    <div class="kpi-card" style="border-left: 3px solid var(--counter-color);">
+                        <div class="kpi-info">
+                            <span class="kpi-label">Counter Variance</span>
+                            <h2 class="kpi-value" id="recon-kpi-counter">INR 0.00</h2>
+                            <span class="kpi-trend" id="recon-kpi-counter-desc" style="font-size: 0.7rem; color: var(--text-muted);">Actual POS Gross vs. Ledger Actual</span>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi-card" style="border-left: 3px solid var(--swiggy-color);">
+                        <div class="kpi-info">
+                            <span class="kpi-label">Swiggy Variance</span>
+                            <h2 class="kpi-value" id="recon-kpi-swiggy">INR 0.00</h2>
+                            <span class="kpi-trend" id="recon-kpi-swiggy-desc" style="font-size: 0.7rem; color: var(--text-muted);">Actual App Gross vs. Ledger Swiggy</span>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi-card" style="border-left: 3px solid var(--zomato-color);">
+                        <div class="kpi-info">
+                            <span class="kpi-label">Zomato Variance</span>
+                            <h2 class="kpi-value" id="recon-kpi-zomato">INR 0.00</h2>
+                            <span class="kpi-trend" id="recon-kpi-zomato-desc" style="font-size: 0.7rem; color: var(--text-muted);">Actual App Gross vs. Ledger Zomato</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card" style="border-left: 3px solid var(--success-color);">
+                        <div class="kpi-info">
+                            <span class="kpi-label">Bank Payout Variance</span>
+                            <h2 class="kpi-value" id="recon-kpi-payout">INR 0.00</h2>
+                            <span class="kpi-trend" id="recon-kpi-payout-desc" style="font-size: 0.7rem; color: var(--text-muted);">App Bank Credits vs. Ledger Income Total</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reconciliation Trend Line Chart -->
+                <div class="chart-row" style="grid-template-columns: 1fr; margin-bottom: 1.5rem;">
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="header-text-group">
+                                <h3>Daily Revenue Reconciliation (App Reports vs. Manual Ledger)</h3>
+                                <p class="section-desc" style="font-size: 0.725rem; color: var(--text-muted); margin: 0.2rem 0 0 0;">Day-by-day comparison of actual payouts against recorded totals to visually pinpoint discrepancies</p>
+                            </div>
+                        </div>
+                        <div class="chart-container" style="min-height: 300px;">
+                            <div id="chart-reconciliation-comparison"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reconciliation Table -->
+                <div class="table-card">
+                    <div class="card-header" style="border-bottom: none; padding-bottom: 0; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                        <div>
+                            <h3>Daily Sales &amp; Payout Variance Breakdown</h3>
+                            <p class="section-desc" style="font-size: 0.75rem; color: var(--text-muted); margin: 0.2rem 0 0 0;">Separated App vs Ledger columns per channel. Values in ₹. Diff = App minus Ledger (green = app higher, red = ledger higher).</p>
+                        </div>
+                        <button id="recon-copy-csv-btn" onclick="copyReconciliationCSV()" style="display: flex; align-items: center; gap: 0.4rem; padding: 0.45rem 1rem; background: var(--accent-color, #6c63ff); color: #fff; border: none; border-radius: 8px; font-size: 0.8rem; font-family: Outfit, sans-serif; font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity 0.2s;">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            Copy as CSV
+                        </button>
+                    </div>
+                    <div class="table-container" style="margin-top: 1rem; overflow-x: auto;">
+                        <table class="dashboard-table recon-expanded-table" id="recon-main-table" style="min-width: 1200px; border-collapse: collapse;">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" style="vertical-align: bottom; min-width: 90px;">Date</th>
+                                    <th colspan="3" style="text-align: center; border-bottom: 1px solid rgba(255,255,255,0.08); background: rgba(108,99,255,0.1);">Counter (POS)</th>
+                                    <th colspan="3" style="text-align: center; border-bottom: 1px solid rgba(255,255,255,0.08); background: rgba(255,103,71,0.1);">Swiggy</th>
+                                    <th colspan="3" style="text-align: center; border-bottom: 1px solid rgba(255,255,255,0.08); background: rgba(230,69,83,0.1);">Zomato</th>
+                                    <th colspan="3" style="text-align: center; border-bottom: 1px solid rgba(255,255,255,0.08); background: rgba(46,213,115,0.08);">Total (Net Payout)</th>
+                                    <th rowspan="2" style="vertical-align: bottom; min-width: 80px;">Status</th>
+                                </tr>
+                                <tr>
+                                    <th style="min-width: 100px; font-size: 0.72rem; background: rgba(108,99,255,0.06);">App (₹)</th>
+                                    <th style="min-width: 100px; font-size: 0.72rem; background: rgba(108,99,255,0.06);">Ledger (₹)</th>
+                                    <th style="min-width: 90px; font-size: 0.72rem; background: rgba(108,99,255,0.06);">Diff (₹)</th>
+                                    <th style="min-width: 100px; font-size: 0.72rem; background: rgba(255,103,71,0.06);">App (₹)</th>
+                                    <th style="min-width: 100px; font-size: 0.72rem; background: rgba(255,103,71,0.06);">Ledger (₹)</th>
+                                    <th style="min-width: 90px; font-size: 0.72rem; background: rgba(255,103,71,0.06);">Diff (₹)</th>
+                                    <th style="min-width: 100px; font-size: 0.72rem; background: rgba(230,69,83,0.06);">App (₹)</th>
+                                    <th style="min-width: 100px; font-size: 0.72rem; background: rgba(230,69,83,0.06);">Ledger (₹)</th>
+                                    <th style="min-width: 90px; font-size: 0.72rem; background: rgba(230,69,83,0.06);">Diff (₹)</th>
+                                    <th style="min-width: 110px; font-size: 0.72rem; background: rgba(46,213,115,0.06);">App Bank (₹)</th>
+                                    <th style="min-width: 110px; font-size: 0.72rem; background: rgba(46,213,115,0.06);">Ledger Net (₹)</th>
+                                    <th style="min-width: 90px; font-size: 0.72rem; background: rgba(46,213,115,0.06);">Diff (₹)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reconciliation-table-tbody">
+                                <!-- Dynamic daily rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== PAYOUT ANALYTICS TAB ========== -->
+            <section id="tab-payouts" class="tab-pane">
+
+                <!-- Money Flow Explainer -->
+                <div class="chart-card" style="margin-bottom: 1.5rem; background: linear-gradient(135deg, rgba(108,99,255,0.08), rgba(46,213,115,0.05)); border: 1px solid rgba(108,99,255,0.2);">
+                    <div class="card-header" style="border-bottom: none; padding-bottom: 0.5rem;">
+                        <h3 style="display:flex; align-items:center; gap:0.5rem;">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                            How Platform Payouts Work — Understanding the Numbers
+                        </h3>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem; padding: 0.25rem 0 0.5rem 0;">
+                        <div style="background: rgba(108,99,255,0.07); border-radius: 10px; padding: 0.85rem 1rem;">
+                            <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 600; letter-spacing: 0.05em;">CUSTOMER PAYS (Gross Sales)</div>
+                            <div style="font-size: 0.82rem; line-height: 1.7;">Item Subtotal + Packaging<br>− Restaurant Promo/Discount<br>+ GST (5% collected for Govt.)<br>= <strong>Grand Total charged to customer</strong></div>
+                        </div>
+                        <div style="background: rgba(255,71,87,0.07); border-radius: 10px; padding: 0.85rem 1rem;">
+                            <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 600; letter-spacing: 0.05em;">PLATFORM DEDUCTS (Before Paying You)</div>
+                            <div style="font-size: 0.82rem; line-height: 1.7;">Platform Commission (~10%)<br>+ Other Fees (payment gateway, Govt. charges)<br>= <strong>Total Deductions</strong></div>
+                        </div>
+                        <div style="background: rgba(46,213,115,0.07); border-radius: 10px; padding: 0.85rem 1rem;">
+                            <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 600; letter-spacing: 0.05em;">YOU RECEIVE (Weekly Bank Transfer)</div>
+                            <div style="font-size: 0.82rem; line-height: 1.7;">Grand Total − Platform Deductions<br>= <strong>Net Payout</strong> (what hits your FED BANK / YES BANK weekly)</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 0.5rem; padding: 0.5rem 0.75rem; background: rgba(255,193,7,0.08); border-radius: 8px; border-left: 3px solid #f59e0b; font-size: 0.78rem; color: var(--text-secondary);">
+                        ⚠️ <strong>Note on your Reconciliation table:</strong> The "App Gross" column shows what customers paid (Grand Total). The "Ledger" column is your 75% estimate. But what actually reaches your bank is <strong>Net Payout</strong> (Swiggy ~80.4%, Zomato ~77.1%). This Payout Analytics page tracks Net Payout accurately.
+                    </div>
+                </div>
+
+                <!-- Channel KPI Summary -->
+                <div class="kpi-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 1.5rem;" id="payout-kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-info">
+                            <span class="kpi-label">Swiggy Gross Sales</span>
+                            <h2 class="kpi-value" id="payout-swiggy-gross">₹0</h2>
+                            <span class="kpi-trend" id="payout-swiggy-orders" style="color: var(--text-muted);">— orders</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-info">
+                            <span class="kpi-label">Swiggy Net Payout</span>
+                            <h2 class="kpi-value text-success" id="payout-swiggy-net">₹0</h2>
+                            <span class="kpi-trend" id="payout-swiggy-rate" style="color: var(--text-muted);">0% retention</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-info">
+                            <span class="kpi-label">Zomato Gross Sales</span>
+                            <h2 class="kpi-value" id="payout-zomato-gross">₹0</h2>
+                            <span class="kpi-trend" id="payout-zomato-orders" style="color: var(--text-muted);">— orders</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-info">
+                            <span class="kpi-label">Zomato Net Payout</span>
+                            <h2 class="kpi-value text-success" id="payout-zomato-net">₹0</h2>
+                            <span class="kpi-trend" id="payout-zomato-rate" style="color: var(--text-muted);">0% retention</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-info">
+                            <span class="kpi-label">Total Commission Paid</span>
+                            <h2 class="kpi-value text-danger" id="payout-total-commission">₹0</h2>
+                            <span class="kpi-trend" id="payout-total-other" style="color: var(--text-muted);">+ ₹0 other fees</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-info">
+                            <span class="kpi-label">Combined Net Bank Credit</span>
+                            <h2 class="kpi-value text-success" id="payout-combined-net">₹0</h2>
+                            <span class="kpi-trend" id="payout-combined-rate" style="color: var(--text-muted);">blended retention</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weekly Payout Chart -->
+                <div class="chart-row" style="grid-template-columns: 1fr; margin-bottom: 1.5rem;">
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="header-text-group">
+                                <h3>Weekly Net Payout — Swiggy &amp; Zomato</h3>
+                                <p class="section-desc" style="font-size: 0.72rem; color: var(--text-muted); margin: 0.2rem 0 0 0;">What actually hit your bank each week after platform deductions. Click any bar to drill into individual orders.</p>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                <select id="payout-channel-filter" onchange="loadPayoutData()" style="padding: 0.35rem 0.75rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-primary); font-family: Outfit, sans-serif; font-size: 0.8rem; cursor:pointer;">
+                                    <option value="">Both Channels</option>
+                                    <option value="Swiggy">Swiggy Only</option>
+                                    <option value="Zomato">Zomato Only</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container" style="min-height: 320px;">
+                            <div id="chart-payout-weekly"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deductions Breakdown Chart -->
+                <div class="chart-row" style="grid-template-columns: 1fr 1fr; margin-bottom: 1.5rem;">
+                    <div class="chart-card">
+                        <div class="card-header"><h3>Swiggy — Fee Breakdown</h3></div>
+                        <div class="chart-container" style="min-height: 260px;"><div id="chart-swiggy-breakdown"></div></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="card-header"><h3>Zomato — Fee Breakdown</h3></div>
+                        <div class="chart-container" style="min-height: 260px;"><div id="chart-zomato-breakdown"></div></div>
+                    </div>
+                </div>
+
+                <!-- Weekly Payout Table with Drilldown -->
+                <div class="table-card">
+                    <div class="card-header" style="border-bottom: none; padding-bottom: 0; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                        <div>
+                            <h3>Weekly Payout Breakdown</h3>
+                            <p class="section-desc" style="font-size: 0.75rem; color: var(--text-muted); margin: 0.2rem 0 0 0;">Full deduction waterfall per week per channel. Click <strong>View Orders</strong> to drill into individual transactions.</p>
+                        </div>
+                        <button onclick="copyPayoutCSV()" style="display: flex; align-items: center; gap: 0.4rem; padding: 0.45rem 1rem; background: var(--accent-color, #6c63ff); color: #fff; border: none; border-radius: 8px; font-size: 0.8rem; font-family: Outfit, sans-serif; font-weight: 600; cursor: pointer; white-space: nowrap;" id="payout-copy-btn">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            Copy CSV
+                        </button>
+                    </div>
+                    <div class="table-container" style="margin-top: 1rem; overflow-x: auto;">
+                        <table class="dashboard-table" id="payout-weekly-table" style="min-width: 1100px;">
+                            <thead>
+                                <tr>
+                                    <th>Week</th>
+                                    <th>Channel</th>
+                                    <th style="text-align:right;">Orders</th>
+                                    <th style="text-align:right;">Gross Sales (₹)</th>
+                                    <th style="text-align:right;">Discount (₹)</th>
+                                    <th style="text-align:right;">GST Collected (₹)</th>
+                                    <th style="text-align:right;">Commission (₹)</th>
+                                    <th style="text-align:right;">Other Fees (₹)</th>
+                                    <th style="text-align:right;">Total Deductions (₹)</th>
+                                    <th style="text-align:right;">Net Payout (₹)</th>
+                                    <th style="text-align:right;">Retention %</th>
+                                    <th style="text-align:center;">Drill Down</th>
+                                </tr>
+                            </thead>
+                            <tbody id="payout-weekly-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+            <!-- ========== END PAYOUT ANALYTICS TAB ========== -->
+
+            <!-- ========== PROMO IMPACT TAB ========== -->
+            <section id="tab-promo" class="tab-pane">
+
+                <!-- Correlation Score Banner -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem;">
+                    <div class="chart-card" style="background: linear-gradient(135deg, rgba(255,103,71,0.12), rgba(255,71,87,0.06)); border: 1px solid rgba(255,103,71,0.25);">
+                        <div class="card-header" style="border-bottom:none; padding-bottom:0.25rem;">
+                            <h3 style="display:flex;align-items:center;gap:0.5rem;">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#FF6747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                                Swiggy — Promo vs Volume Correlation
+                            </h3>
+                        </div>
+                        <div style="display:flex; align-items:flex-end; gap:1.5rem; padding: 0.5rem 0 0.75rem 0;">
+                            <div>
+                                <div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:0.25rem;">PEARSON COEFFICIENT (r)</div>
+                                <div id="promo-corr-swiggy" style="font-size:2.8rem;font-weight:800;line-height:1;color:#FF6747;">—</div>
+                            </div>
+                            <div style="flex:1;">
+                                <div id="promo-corr-swiggy-label" style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:0.5rem;">—</div>
+                                <div style="font-size:0.72rem;color:var(--text-muted);">r closer to +1.0 = stronger positive correlation between promo spend and order volume</div>
+                            </div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;">
+                            <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:0.6rem 0.75rem;">
+                                <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:0.2rem;">TOTAL PROMO SPEND</div>
+                                <div id="promo-swiggy-total-disc" style="font-size:0.95rem;font-weight:700;">—</div>
+                            </div>
+                            <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:0.6rem 0.75rem;">
+                                <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:0.2rem;">AVG DISCOUNT/ORDER</div>
+                                <div id="promo-swiggy-avg-disc" style="font-size:0.95rem;font-weight:700;">—</div>
+                            </div>
+                            <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:0.6rem 0.75rem;">
+                                <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:0.2rem;">% ORDERS WITH PROMO</div>
+                                <div id="promo-swiggy-pct" style="font-size:0.95rem;font-weight:700;">—</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-card" style="background: linear-gradient(135deg, rgba(230,69,83,0.12), rgba(200,50,70,0.06)); border: 1px solid rgba(230,69,83,0.25);">
+                        <div class="card-header" style="border-bottom:none; padding-bottom:0.25rem;">
+                            <h3 style="display:flex;align-items:center;gap:0.5rem;">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#E64553" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                                Zomato — Promo vs Volume Correlation
+                            </h3>
+                        </div>
+                        <div style="display:flex; align-items:flex-end; gap:1.5rem; padding: 0.5rem 0 0.75rem 0;">
+                            <div>
+                                <div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:0.25rem;">PEARSON COEFFICIENT (r)</div>
+                                <div id="promo-corr-zomato" style="font-size:2.8rem;font-weight:800;line-height:1;color:#E64553;">—</div>
+                            </div>
+                            <div style="flex:1;">
+                                <div id="promo-corr-zomato-label" style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:0.5rem;">—</div>
+                                <div style="font-size:0.72rem;color:var(--text-muted);">r closer to +1.0 = stronger positive correlation between promo spend and order volume</div>
+                            </div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;">
+                            <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:0.6rem 0.75rem;">
+                                <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:0.2rem;">TOTAL PROMO SPEND</div>
+                                <div id="promo-zomato-total-disc" style="font-size:0.95rem;font-weight:700;">—</div>
+                            </div>
+                            <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:0.6rem 0.75rem;">
+                                <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:0.2rem;">AVG DISCOUNT/ORDER</div>
+                                <div id="promo-zomato-avg-disc" style="font-size:0.95rem;font-weight:700;">—</div>
+                            </div>
+                            <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:0.6rem 0.75rem;">
+                                <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:0.2rem;">% ORDERS WITH PROMO</div>
+                                <div id="promo-zomato-pct" style="font-size:0.95rem;font-weight:700;">—</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 1: Weekly Trend (dual-axis) + Scatter -->
+                <div class="chart-row" style="grid-template-columns: 1.6fr 1fr; margin-bottom:1.5rem;">
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="header-text-group">
+                                <h3>Weekly Promo Spend vs Order Volume</h3>
+                                <p class="section-desc" style="font-size:0.72rem;color:var(--text-muted);margin:0.2rem 0 0 0;">Bars = weekly discount spend (₹). Line = total orders that week. Overlay reveals whether high-discount weeks drive more orders.</p>
+                            </div>
+                            <select id="promo-channel-filter" onchange="loadPromoData()" style="padding:0.35rem 0.75rem;border-radius:8px;border:1px solid var(--border-color);background:var(--card-bg);color:var(--text-primary);font-family:Outfit,sans-serif;font-size:0.8rem;cursor:pointer;">
+                                <option value="">Both Channels</option>
+                                <option value="Swiggy">Swiggy Only</option>
+                                <option value="Zomato">Zomato Only</option>
+                            </select>
+                        </div>
+                        <div class="chart-container" style="min-height:320px;"><div id="chart-promo-trend"></div></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <h3>Discount Spend vs Orders (Scatter)</h3>
+                            <p class="section-desc" style="font-size:0.72rem;color:var(--text-muted);margin:0.15rem 0 0 0;">Each dot = one day. Upward trend confirms positive correlation.</p>
+                        </div>
+                        <div class="chart-container" style="min-height:320px;"><div id="chart-promo-scatter"></div></div>
+                    </div>
+                </div>
+
+                <!-- Row 2: Promo vs Non-Promo Order Value + Discount Bucket Distribution -->
+                <div class="chart-row" style="grid-template-columns: 1fr 1fr; margin-bottom:1.5rem;">
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <h3>Promo vs Non-Promo — Avg Order Value</h3>
+                            <p class="section-desc" style="font-size:0.72rem;color:var(--text-muted);margin:0.15rem 0 0 0;">Do discounts attract higher or lower value orders?</p>
+                        </div>
+                        <div class="chart-container" style="min-height:280px;"><div id="chart-promo-orderval"></div></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <h3>Discount Size Distribution</h3>
+                            <p class="section-desc" style="font-size:0.72rem;color:var(--text-muted);margin:0.15rem 0 0 0;">How many orders fall in each discount bracket?</p>
+                        </div>
+                        <div class="chart-container" style="min-height:280px;"><div id="chart-promo-buckets"></div></div>
+                    </div>
+                </div>
+
+                <!-- Weekly Detail Table -->
+                <div class="table-card">
+                    <div class="card-header" style="border-bottom:none;padding-bottom:0;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                        <div>
+                            <h3>Weekly Promo Breakdown</h3>
+                            <p class="section-desc" style="font-size:0.75rem;color:var(--text-muted);margin:0.2rem 0 0 0;">Week-by-week breakdown of promo orders, discount spend, and average order values. Higher discount weeks show the promo effect on volume.</p>
+                        </div>
+                        <button onclick="copyPromoCSV()" id="promo-copy-btn" style="display:flex;align-items:center;gap:0.4rem;padding:0.45rem 1rem;background:var(--accent-color,#6c63ff);color:#fff;border:none;border-radius:8px;font-size:0.8rem;font-family:Outfit,sans-serif;font-weight:600;cursor:pointer;white-space:nowrap;">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            Copy CSV
+                        </button>
+                    </div>
+                    <div class="table-container" style="margin-top:1rem;overflow-x:auto;">
+                        <table class="dashboard-table" id="promo-weekly-table" style="min-width:1100px;">
+                            <thead>
+                                <tr>
+                                    <th>Week</th>
+                                    <th>Channel</th>
+                                    <th style="text-align:right;">Total Orders</th>
+                                    <th style="text-align:right;">Promo Orders</th>
+                                    <th style="text-align:right;">% With Promo</th>
+                                    <th style="text-align:right;">Total Discount (₹)</th>
+                                    <th style="text-align:right;">Avg Disc / Order (₹)</th>
+                                    <th style="text-align:right;">Avg Disc (Promo Only) (₹)</th>
+                                    <th style="text-align:right;">Avg AOV — Promo (₹)</th>
+                                    <th style="text-align:right;">Avg AOV — No Promo (₹)</th>
+                                    <th style="text-align:right;">Gross Sales (₹)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="promo-weekly-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+            <!-- ========== END PROMO IMPACT TAB ========== -->
+
+        </main>
+
+    </div>
+
+    <!-- Payout Drill-Down Modal -->
+    <div id="payout-modal" class="modal" style="display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); overflow-y:auto; padding: 2rem 1rem;">
+        <div class="modal-content glass-card" style="max-width: 1100px; margin: 0 auto; padding: 1.5rem; border-radius: 16px; position: relative;">
+            <div class="modal-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+                <div>
+                    <h2 id="payout-modal-title" style="margin:0; font-size: 1.15rem;">Order Details</h2>
+                    <p id="payout-modal-subtitle" style="margin: 0.2rem 0 0 0; font-size: 0.8rem; color: var(--text-muted);"></p>
+                </div>
+                <span id="close-payout-modal" onclick="document.getElementById('payout-modal').style.display='none'" style="cursor:pointer; font-size: 1.5rem; line-height:1; color: var(--text-muted);">&times;</span>
+            </div>
+            <!-- Modal KPI strip -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem; background: rgba(255,255,255,0.03); border-radius: 10px; padding: 0.85rem;">
+                <div><div style="font-size: 0.68rem; color: var(--text-muted); margin-bottom: 0.2rem;">ORDERS</div><div id="pm-orders" style="font-size: 1.1rem; font-weight:700;">—</div></div>
+                <div><div style="font-size: 0.68rem; color: var(--text-muted); margin-bottom: 0.2rem;">GROSS SALES</div><div id="pm-gross" style="font-size: 1.1rem; font-weight:700;">—</div></div>
+                <div><div style="font-size: 0.68rem; color: var(--text-muted); margin-bottom: 0.2rem;">COMMISSION</div><div id="pm-commission" style="font-size: 1.1rem; font-weight:700; color: var(--danger-color);">—</div></div>
+                <div><div style="font-size: 0.68rem; color: var(--text-muted); margin-bottom: 0.2rem;">OTHER FEES</div><div id="pm-other" style="font-size: 1.1rem; font-weight:700; color: var(--danger-color);">—</div></div>
+                <div><div style="font-size: 0.68rem; color: var(--text-muted); margin-bottom: 0.2rem;">NET PAYOUT</div><div id="pm-net" style="font-size: 1.1rem; font-weight:700; color: var(--success-color);">—</div></div>
+            </div>
+            <!-- Modal pagination -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+                <span id="pm-record-count" style="font-size: 0.78rem; color: var(--text-muted);"></span>
+                <div style="display:flex; gap:0.5rem;">
+                    <button id="pm-prev-btn" onclick="payoutModalPage('prev')" style="padding: 0.3rem 0.8rem; border-radius: 6px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-primary); cursor:pointer; font-family: Outfit, sans-serif; font-size: 0.78rem;">← Prev</button>
+                    <span id="pm-page-info" style="padding: 0.3rem 0.6rem; font-size: 0.78rem; color: var(--text-muted);"></span>
+                    <button id="pm-next-btn" onclick="payoutModalPage('next')" style="padding: 0.3rem 0.8rem; border-radius: 6px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-primary); cursor:pointer; font-family: Outfit, sans-serif; font-size: 0.78rem;">Next →</button>
+                </div>
+            </div>
+            <div style="overflow-x: auto;">
+                <table class="dashboard-table" style="min-width: 900px; font-size: 0.8rem;">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Date &amp; Time</th>
+                            <th>Type</th>
+                            <th style="text-align:right;">Subtotal</th>
+                            <th style="text-align:right;">Discount</th>
+                            <th style="text-align:right;">GST</th>
+                            <th style="text-align:right;">Gross</th>
+                            <th style="text-align:right; color: var(--danger-color);">Commission</th>
+                            <th style="text-align:right; color: var(--danger-color);">Other Fees</th>
+                            <th style="text-align:right; color: var(--success-color);">Net Payout</th>
+                        </tr>
+                    </thead>
+                    <tbody id="payout-modal-tbody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- Item Breakup Modal -->
+    <div id="item-modal" class="modal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2 id="modal-item-name">Item Sales Breakup</h2>
+                <span class="close-btn" id="close-modal-btn">&times;</span>
+            </div>
+            
+            <div class="modal-body">
+                <!-- Modal Quick Stats -->
+                <div class="modal-kpi-row">
+                    <div class="modal-kpi-card">
+                        <span class="kpi-mini-label">Total Quantity Sold</span>
+                        <h3 id="modal-total-qty">0</h3>
+                    </div>
+                    <div class="modal-kpi-card">
+                        <span class="kpi-mini-label">Associated Orders</span>
+                        <h3 id="modal-total-orders">0</h3>
+                    </div>
+                </div>
+                
+                <!-- Modal Charts Grid -->
+                <div class="modal-charts-grid">
+                    <div class="modal-chart-card">
+                        <h4>Daily Order Volume</h4>
+                        <div id="modal-chart-trend" class="mini-chart-container"></div>
+                    </div>
+                    
+                    <div class="modal-chart-card">
+                        <h4>Order Type Share</h4>
+                        <div id="modal-chart-type" class="mini-chart-container"></div>
+                    </div>
+                </div>
+                
+                <!-- Frequently Bought Together Table -->
+                <div class="modal-cross-card">
+                    <h4>Frequently Ordered Together</h4>
+                    <p class="section-desc">Top items purchased in the same transaction as this item.</p>
+                    <table class="dashboard-table mini-table">
+                        <thead>
+                            <tr>
+                                <th>Menu Item</th>
+                                <th>Co-occurrence Count</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modal-cross-body">
+                            <!-- Dynamic cross-sell items -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Sync Progress Modal -->
+    <div id="sync-modal" class="modal">
+        <div class="modal-content glass-card" style="max-width: 600px; margin: auto;">
+            <div class="modal-header">
+                <h2>Philos Data Sync</h2>
+                <span class="close-btn" id="btn-close-sync-modal" style="display: none;">&times;</span>
+            </div>
+            <div class="modal-body" style="padding: 1.5rem;">
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <!-- Status message -->
+                    <div style="display: flex; justify-content: space-between; font-family: Outfit, sans-serif; font-size: 0.95rem; font-weight: 500;">
+                        <span id="sync-status-stage" style="color: var(--text-secondary);">Initializing...</span>
+                        <span id="sync-status-percent" style="color: var(--accent-blue);">0%</span>
+                    </div>
+                    
+                    <!-- Progress Bar Container -->
+                    <div style="background: var(--border-card); height: 10px; border-radius: 5px; overflow: hidden; width: 100%;">
+                        <div id="sync-progress-bar" style="background: linear-gradient(90deg, var(--accent-blue), #3b82f6); height: 100%; width: 0%; transition: width 0.3s ease; border-radius: 5px;"></div>
+                    </div>
+                    
+                    <p id="sync-status-msg" style="font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.4; font-family: Outfit, sans-serif;">Starting data sync process...</p>
+                    
+                    <!-- Terminal Console Log -->
+                    <div style="margin-top: 0.5rem;">
+                        <span style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.4rem;">Activity Log</span>
+                        <div id="sync-log" style="background: rgba(15, 23, 42, 0.95); border: 1px solid var(--border-card); border-radius: 8px; font-family: monospace; font-size: 0.75rem; color: #a7f3d0; padding: 0.75rem; height: 180px; overflow-y: auto; white-space: pre-wrap; line-height: 1.5; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);"></div>
+                    </div>
+                    
+                    <!-- Sync Complete Summary Info (Dynamic) -->
+                    <div id="sync-summary" style="display: none; padding: 0.8rem; border-radius: 8px; background: rgba(22, 163, 74, 0.1); border: 1px solid rgba(22, 163, 74, 0.2); font-family: Outfit, sans-serif; font-size: 0.85rem; line-height: 1.5; color: var(--text-secondary);">
+                    </div>
+
+                    <!-- Import History (per-file dedup audit trail) -->
+                    <details id="import-history-details" style="display: none;">
+                        <summary style="cursor: pointer; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Import History</summary>
+                        <div class="table-container" style="margin-top: 0.5rem; max-height: 220px; overflow-y: auto;">
+                            <table class="dashboard-table">
+                                <thead>
+                                    <tr>
+                                        <th>File</th>
+                                        <th>Channel</th>
+                                        <th>Imported At</th>
+                                        <th>New</th>
+                                        <th>Duplicates</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="import-history-body">
+                                    <!-- Dynamic rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </details>
+
+                    <!-- Sync Failed Summary Info (Dynamic) -->
+                    <div id="sync-error" style="display: none; padding: 0.8rem; border-radius: 8px; background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.2); font-family: Outfit, sans-serif; font-size: 0.85rem; line-height: 1.5; color: var(--danger-color);">
+                    </div>
+                    
+                    <!-- Actions -->
+                    <div style="display: flex; justify-content: flex-end; margin-top: 0.5rem;">
+                        <button id="btn-done-sync" class="btn btn-primary" style="display: none; padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 500;">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js?v=12"></script>
+</body>
+</html>
